@@ -1,0 +1,9 @@
+RaceTime	
+Track	
+RaceType	
+RaceClass	
+Horse	
+Odds	
+Jockey	
+Trainer	
+Placing
