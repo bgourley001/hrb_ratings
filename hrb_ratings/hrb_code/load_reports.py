@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 from tabulate import tabulate
 
 pd.set_option('display.max_columns', None)
@@ -13,7 +14,19 @@ os.chdir(load_path)
 daily_report_path = load_path + 'hrb_ratings/csv_downloads/daily_reports/'
 daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
 
-report_date = '2022-05-07'
+report_date = '2022-05-09'
+
+def align_daily_report_and_racecards(df_daily_racecards, df_daily_report):
+	# compare card output with daily report output
+	horse_list_1 = df_daily_report.horse
+	horse_list_2 = df_daily_racecards.Horse
+	horse_diff = list(set(horse_list_2) - set(horse_list_1))
+
+	# remove rows from racecard where horse is in horse_diff
+	for horse in horse_diff:
+		df_daily_racecards.drop(df_daily_racecards[df_daily_racecards.Horse == horse].index, inplace=True)
+
+	return df_daily_racecards
 
 def get_daily_racecards(daily_racecards_path, report_date):
 	daily_racecards_filename = 'cards_' + report_date + '.csv'
@@ -33,6 +46,8 @@ def get_daily_racecards(daily_racecards_path, report_date):
 	#                   'HorseTrackPlace%', 'HorseCDWin%', 'TrkDist_plcPC', 'Class_WinPC', 
 	#                   'Class_plcPC', 'Going_WinPC', 'Going_plcPC', 'Direction_WinPC', 
 	#                   'Headgear_WinPC']
+
+	print(df_daily_racecards.head())
 
 	return df_daily_racecards
 
@@ -59,6 +74,8 @@ def get_daily_report(daily_report_path, report_date):
 	print('\nCreating horse dataframe...')
 	df_horse = df_daily_report[display_columns]
 
+	print(df_horse.head())
+
 	return df_daily_report, df_horse
 
 def get_class_score(df):
@@ -72,6 +89,11 @@ df_daily_report, df_horse = get_daily_report(daily_report_path, report_date)
 
 print('Load daily racecards...')
 df_daily_racecards = get_daily_racecards(daily_racecards_path, report_date)
+
+print('Aligning daily_racecards and daily_report')
+df_daily_racecards = align_daily_report_and_racecards(df_daily_racecards, df_daily_report)
+print(df_daily_racecards.shape)
+print(df_daily_report.shape)
 
 #df_horse_groupby = df_horse.groupby(['race_date', 'track', 'time'], as_index=False)[['horse','class', 'major','prize']]
 #print(df_horse_groupby.first().head())
