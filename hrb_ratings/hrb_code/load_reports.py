@@ -6,13 +6,19 @@ from tabulate import tabulate
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-drive_letter = 'G:'
-load_path = drive_letter + '/Dev2022/projects/hrb_ratings/'
+# machine = 'desktop'
+machine = 'laptop'
+
+if machine == 'desktop':
+	load_path = 'G:/Dev2022/projects/hrb_ratings/'
+else:
+	load_path = 'C:/Users/bgour/Coding/Dev2022/projects/hrb_ratings/'
+
 os.chdir(load_path)
 
 # data path
-daily_report_path = load_path + 'hrb_ratings/csv_downloads/daily_reports/'
-daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
+daily_report_path = load_path + 'csv_downloads/daily_reports/'
+daily_racecards_path = load_path + 'csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
