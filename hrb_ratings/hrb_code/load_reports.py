@@ -6,8 +6,8 @@ from tabulate import tabulate
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-# machine = 'desktop'
-machine = 'laptop'
+machine = 'desktop'
+# machine = 'laptop'
 
 if machine == 'desktop':
 	load_path = 'G:/Dev2022/projects/hrb_ratings/'
@@ -17,8 +17,8 @@ else:
 os.chdir(load_path)
 
 # data path
-daily_report_path = load_path + 'csv_downloads/daily_reports/'
-daily_racecards_path = load_path + 'csv_downloads/cards/'
+daily_report_path = load_path + 'hrb_ratings/csv_downloads/daily_reports/'
+daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
@@ -164,4 +164,4 @@ print(df_daily_report.shape)
 
 # add race_class variable to the daily report calculated from Irish and UK classes
 race_class_list = []
-df_daily_report['race_class'] = add_race_class_to_daily_report(df_daily_report, race_class_list)
+# df_daily_report['race_class'] = add_race_class_to_daily_report(df_daily_report, race_class_list)
