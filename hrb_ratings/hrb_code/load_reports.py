@@ -22,16 +22,33 @@ daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
-def add_race_class_to_daily_report(df_daily_report, race_class_list):
-	if df_daily_report['class'] == 'Irish':
-		if df_daily_report.major == 'Non-Major':
-			if df_daily_report.prize < 5000:
+def add_race_class(df_daily_report):
+	race_class_list = []
+	for race_index in df_daily_report.index:
+		track = df_daily_report.loc[race_index,'track']
+		time = df_daily_report.loc[race_index,'time']
+		horse = df_daily_report.loc[race_index,'horse']
+		class_entry = df_daily_report.loc[race_index,'class']
+		major = df_daily_report.loc[race_index,'major']
+		prize = df_daily_report.loc[race_index,'prize']
+
+		# print(f"{race_index}, {track}, {time}, {horse}, class_entry : {class_entry}, major : {major}, prize : {prize}")
+		race_class_list.append(get_race_class(class_entry, major, prize))
+
+	df_daily_report['race_class'] = race_class_list
+
+	return df_daily_report
+
+def get_race_class(class_entry, major, prize):
+	if class_entry == 'Irish':
+		if major == 'Non-Major':
+			if prize < 5000:
 				race_class = 'Class 6'
-			elif df_daily_report.prize < 7000:
+			elif prize < 7000:
 				race_class = 'Class 5'
-			elif df_daily_report.prize < 10000:
+			elif prize < 10000:
 				race_class = 'Class 4'
-			elif df_daily_report.prize < 14000:
+			elif prize < 14000:
 				race_class = 'Class 3'
 			else:
 		 		race_class = 'Class 2'
@@ -45,10 +62,10 @@ def add_race_class_to_daily_report(df_daily_report, race_class_list):
 			else:
 		 		# Listed Race
 		 		race_class = 'class 1'
-		race_class_list.append(race_class)
 	else:
-		df_daily_report['race_class'] = df_daily_report['class']
-	return df_daily_report
+		race_class = class_entry
+
+	return race_class
 
 def align_daily_report_and_racecards(df_daily_racecards, df_daily_report):
 	# compare card output with daily report output
@@ -122,8 +139,6 @@ def get_class_score(df):
 	# 'Class 6' 'Class 5' 'Irish' 'Class 3' 'Class 2' 'Class 4' 'Class 1'
 	return
 
-
-
 # rating settings dictionaries
 class_scores = {
 	'Class 7' : 80,
@@ -152,16 +167,8 @@ df_daily_racecards = align_daily_report_and_racecards(df_daily_racecards, df_dai
 print(df_daily_racecards.shape)
 print(df_daily_report.shape)
 
-# df_daily_racecards_groupby_min = df_daily_racecards.groupby(['Class'], as_index=False)[['PrizeMoney']].min()
-# print(df_daily_racecards_groupby_min)
-# df_daily_racecards_groupby_max = df_daily_racecards.groupby(['Class'], as_index=False)[['PrizeMoney']].max()
-# print(df_daily_racecards_groupby_max)
-# print()
-# df_horse_groupby_min = df_horse.groupby(['class'], as_index=False)[['prize']].min()
-# print(df_horse_groupby_min)
-# df_horse_groupby_max = df_horse.groupby(['class'], as_index=False)[['prize']].max()
-# print(df_horse_groupby_max)
-
+print('add race_class variable to the daily report calculated from Irish and UK classes')
 # add race_class variable to the daily report calculated from Irish and UK classes
-race_class_list = []
-# df_daily_report['race_class'] = add_race_class_to_daily_report(df_daily_report, race_class_list)
+df_daily_report = add_race_class(df_daily_report)
+print(df_daily_report.shape)
+
