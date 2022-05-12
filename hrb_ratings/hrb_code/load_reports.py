@@ -25,9 +25,6 @@ report_date = '2022-05-07'
 def add_race_class(df_daily_report):
 	race_class_list = []
 	for race_index in df_daily_report.index:
-		track = df_daily_report.loc[race_index,'track']
-		time = df_daily_report.loc[race_index,'time']
-		horse = df_daily_report.loc[race_index,'horse']
 		class_entry = df_daily_report.loc[race_index,'class']
 		major = df_daily_report.loc[race_index,'major']
 		prize = df_daily_report.loc[race_index,'prize']
