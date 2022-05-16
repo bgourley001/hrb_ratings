@@ -132,11 +132,20 @@ def get_daily_report(daily_report_path, report_date):
 
 	return df_daily_report, df_horse
 
-def get_class_score(df):
-	# 'Class 6' 'Class 5' 'Irish' 'Class 3' 'Class 2' 'Class 4' 'Class 1'
-	return
+def add_race_class_score(df_daily_report):
+	df_daily_report['race_class_score'] = df_daily_report.race_class.map(class_scores)
 
-# rating settings dictionaries
+	return df_daily_report
+
+def add_race_value_score(df, race_value_setting):
+	df = df.assign(rounded_prize = lambda x: (x.prize/1000).round(0).astype(int))
+	# adjust rounded_prize to <= max_rounded_prize
+	df.rounded_prize = df.apply(lambda x: x.rounded_prize if x.rounded_prize <= 20 else 20, axis=1)
+	df['race_value_score'] = df.rounded_prize * race_value_setting
+
+	return df
+
+# class_score mapping
 class_scores = {
 	'Class 7' : 80,
 	'Class 6' : 85,
@@ -147,8 +156,7 @@ class_scores = {
 	'Class 1' : 110,
 	'Group 3' : 115,
 	'Group 2' : 120,
-	'Group 1' : 125
-	
+	'Group 1' : 125	
 }
 
 # load reports
@@ -159,13 +167,29 @@ df_daily_report, df_horse = get_daily_report(daily_report_path, report_date)
 print('Load daily racecards...')
 df_daily_racecards = get_daily_racecards(daily_racecards_path, report_date)
 
+# remove Unnamed column from daily_report
+df_daily_report.drop('Unnamed: 183', axis=1, inplace=True)
+
+# align racecards and daily report
 print('Aligning daily_racecards and daily_report')
 df_daily_racecards = align_daily_report_and_racecards(df_daily_racecards, df_daily_report)
 print(df_daily_racecards.shape)
 print(df_daily_report.shape)
 
+# add race_class variable
 print('add race_class variable to the daily report calculated from Irish and UK classes')
 # add race_class variable to the daily report calculated from Irish and UK classes
 df_daily_report = add_race_class(df_daily_report)
 print(df_daily_report.shape)
+
+# add race_class score to daily report
+df_daily_report = add_race_class_score(df_daily_report)
+
+# add race_value score to daily report
+race_value_setting = 1
+df_daily_report = add_race_value_score(df_daily_report, race_value_setting)
+
+print(df_daily_report.shape)
+print(df_daily_report[['prize', 'rounded_prize', 'race_value_score']].head(20))
+
 
