@@ -159,6 +159,11 @@ class_scores = {
 	'Group 1' : 125	
 }
 
+def add_top_or_score(df, top_or_setting):
+	df['top_or_score'] = df.topor * top_or_setting
+
+	return df
+
 # load reports
 # create dataframes
 print('Load daily report...')
@@ -192,4 +197,9 @@ df_daily_report = add_race_value_score(df_daily_report, race_value_setting)
 print(df_daily_report.shape)
 print(df_daily_report[['prize', 'rounded_prize', 'race_value_score']].head(20))
 
+# add top OR score
+top_or_setting = 1
+df_daily_report = add_top_or_score(df_daily_report, top_or_setting)
 
+print(df_daily_report.shape)
+print(df_daily_report[['topor', 'top_or_score']].head(20))
