@@ -22,19 +22,39 @@ daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
-def add_race_class(df_daily_report):
+# class_score mapping
+class_scores = {
+	'Class 7' : 80,
+	'Class 6' : 85,
+	'Class 5' : 90,
+	'Class 4' : 95,
+	'Class 3' : 100,
+	'Class 2' : 105,
+	'Class 1' : 110,
+	'Group 3' : 115,
+	'Group 2' : 120,
+	'Group 1' : 125	
+}
+
+# score multiplier mapping
+score_multipliers = {
+	'race_value_multiplier' : 1,
+	'top_or_multiplier' : 1
+}
+
+def add_race_class(df):
 	race_class_list = []
-	for race_index in df_daily_report.index:
-		class_entry = df_daily_report.loc[race_index,'class']
-		major = df_daily_report.loc[race_index,'major']
-		prize = df_daily_report.loc[race_index,'prize']
+	for race_index in df.index:
+		class_entry = df.loc[race_index,'class']
+		major = df.loc[race_index,'major']
+		prize = df.loc[race_index,'prize']
 
 		# print(f"{race_index}, {track}, {time}, {horse}, class_entry : {class_entry}, major : {major}, prize : {prize}")
 		race_class_list.append(get_race_class(class_entry, major, prize))
 
-	df_daily_report['race_class'] = race_class_list
+	df['race_class'] = race_class_list
 
-	return df_daily_report
+	return df
 
 def get_race_class(class_entry, major, prize):
 	if class_entry == 'Irish':
@@ -132,35 +152,19 @@ def get_daily_report(daily_report_path, report_date):
 
 	return df_daily_report, df_horse
 
-def add_race_class_score(df_daily_report):
-	df_daily_report['race_class_score'] = df_daily_report.race_class.map(class_scores)
+def add_rating_scores(df, class_scores, score_multipliers):
+	# race class
+	df = add_race_class(df)
+	df['race_class_score'] = df.race_class.map(class_scores)
 
-	return df_daily_report
-
-def add_race_value_score(df, race_value_setting):
+	# race_value
 	df = df.assign(rounded_prize = lambda x: (x.prize/1000).round(0).astype(int))
 	# adjust rounded_prize to <= max_rounded_prize
 	df.rounded_prize = df.apply(lambda x: x.rounded_prize if x.rounded_prize <= 20 else 20, axis=1)
-	df['race_value_score'] = df.rounded_prize * race_value_setting
+	df['race_value_score'] = df.rounded_prize * score_multipliers.get('race_value_multiplier')
 
-	return df
-
-# class_score mapping
-class_scores = {
-	'Class 7' : 80,
-	'Class 6' : 85,
-	'Class 5' : 90,
-	'Class 4' : 95,
-	'Class 3' : 100,
-	'Class 2' : 105,
-	'Class 1' : 110,
-	'Group 3' : 115,
-	'Group 2' : 120,
-	'Group 1' : 125	
-}
-
-def add_top_or_score(df, top_or_setting):
-	df['top_or_score'] = df.topor * top_or_setting
+	# top OR
+	df['top_or_score'] = df.topor * score_multipliers.get('top_or_multiplier')
 
 	return df
 
@@ -181,25 +185,10 @@ df_daily_racecards = align_daily_report_and_racecards(df_daily_racecards, df_dai
 print(df_daily_racecards.shape)
 print(df_daily_report.shape)
 
-# add race_class variable
-print('add race_class variable to the daily report calculated from Irish and UK classes')
-# add race_class variable to the daily report calculated from Irish and UK classes
-df_daily_report = add_race_class(df_daily_report)
-print(df_daily_report.shape)
+# add rating scores to daily report
+df_daily_report = add_rating_scores(df_daily_report, class_scores, score_multipliers)
 
-# add race_class score to daily report
-df_daily_report = add_race_class_score(df_daily_report)
-
-# add race_value score to daily report
-race_value_setting = 1
-df_daily_report = add_race_value_score(df_daily_report, race_value_setting)
-
-print(df_daily_report.shape)
-print(df_daily_report[['prize', 'rounded_prize', 'race_value_score']].head(20))
-
-# add top OR score
-top_or_setting = 1
-df_daily_report = add_top_or_score(df_daily_report, top_or_setting)
-
-print(df_daily_report.shape)
-print(df_daily_report[['topor', 'top_or_score']].head(20))
+# test prints
+cols_to_print = ['race_class', 'race_class_score', 'prize', 'race_value_score', 
+				 'topor', 'top_or_score']
+print(df_daily_report[cols_to_print].head(20))
