@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from tabulate import tabulate
 
+from hrbClasses import hrb_classes
+
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
@@ -17,8 +19,8 @@ else:
 os.chdir(load_path)
 
 # data path
-daily_report_path = load_path + 'hrb_ratings/csv_downloads/daily_reports/'
-daily_racecards_path = load_path + 'hrb_ratings/csv_downloads/cards/'
+daily_report_path = load_path + 'hrbRatings/csv_downloads/daily_reports/'
+daily_racecards_path = load_path + 'hrbRatings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
