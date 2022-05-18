@@ -39,8 +39,27 @@ class_scores = {
 # score multiplier mapping
 score_multipliers = {
 	'race_value_multiplier' : 1,
-	'top_or_multiplier' : 1
+	'top_or_multiplier' : 1,
+	'prior_win' : 1,
+	'prior_place' : 1
 }
+
+def get_finish(form, position):
+	finish = form[position]
+
+	return finish
+
+def get_no_of_places(runners):
+	if runners < 5:
+		places = 1
+	elif runners < 8:
+		places = 2
+	elif runners < 16:
+		places = 3
+	else:
+		places = 4
+
+	return places
 
 def add_race_class(df):
 	race_class_list = []
@@ -122,6 +141,15 @@ def get_daily_racecards(daily_racecards_path, report_date):
 
 	return df_racecards
 
+def get_prior_form_score(lr_finish, places, score_multipliers):
+	score = 0
+	if lr_finish <= places:
+		if lr_finish > 1:
+			score = score_multipliers.get('prior_place')
+		elif lr_finish == 1:
+			score = score_multipliers.get('prior_win')
+
+	return score
 
 def get_daily_report(daily_report_path, report_date):
 	daily_report_filename = 'dailyreport-' + report_date + '.csv'
@@ -166,6 +194,18 @@ def add_rating_scores(df, class_scores, score_multipliers):
 	# top OR
 	df['top_or_score'] = df.topor * score_multipliers.get('top_or_multiplier')
 
+	# prior form
+	position = -1
+	df['lr_finish'] = df['form'].apply(lambda x: get_finish(x, position))
+	# convert lr_finish to an integer
+	df['lr_finish'] = pd.to_numeric(df['lr_finish'], errors='coerce')
+	df['number_of_places'] = df['runners'].apply(lambda x: get_no_of_places(x))
+	df['prior_form_score'] = df.apply(lambda x: get_prior_form_score(x['lr_finish'], x['number_of_places'], score_multipliers), axis=1)
+
+	# race score
+	race_score_columns = ['race_class_score', 'race_value_score', 'top_or_score', 'prior_form_score']
+	df['race_score'] = df[race_score_columns].sum(axis=1)
+
 	return df
 
 # load reports
@@ -189,6 +229,6 @@ print(df_daily_report.shape)
 df_daily_report = add_rating_scores(df_daily_report, class_scores, score_multipliers)
 
 # test prints
-cols_to_print = ['race_class', 'race_class_score', 'prize', 'race_value_score', 
-				 'topor', 'top_or_score']
+cols_to_print = ['race_class_score', 'race_value_score', 'top_or_score', 'prior_form_score', 'race_score']
+
 print(df_daily_report[cols_to_print].head(20))
