@@ -24,6 +24,28 @@ daily_racecards_path = load_path + 'hrbRatings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
+# class_score mapping
+class_scores = {
+	'Class 7' : 80,
+	'Class 6' : 85,
+	'Class 5' : 90,
+	'Class 4' : 95,
+	'Class 3' : 100,
+	'Class 2' : 105,
+	'Class 1' : 110,
+	'Group 3' : 115,
+	'Group 2' : 120,
+	'Group 1' : 125	
+}
+
+# score multiplier mapping
+score_multipliers = {
+	'raceValue_multiplier' : 1,
+	'topor_multiplier' : 1,
+	'prior_win' : 1,
+	'prior_place' : 1
+}
+
 def get_daily_report(daily_report_path, report_date):
 	daily_report_filename = 'dailyreport-' + report_date + '.csv'
 	df_daily_report = pd.read_csv(daily_report_path + daily_report_filename, encoding="ISO-8859-1")
@@ -66,11 +88,14 @@ for count in range(0, len(df_grouped)):
 	entry = df_grouped.iloc[count]
 
 	# create Race class instance
-	race = hrb_classes.Race(entry.race_date, entry.track, entry.time, entry.race_name, 
-	entry['class'], entry.race_restrictions, entry.major, entry.racetype, 
-	entry.distance, entry.prize, entry.going, entry.runners, entry.category, entry.direction)
+	race = hrb_classes.Race(class_scores, score_multipliers, entry.race_date, entry.track, entry.time, 
+		entry.race_name, entry['class'], entry.race_restrictions, entry.major, entry.racetype, 
+		entry.distance, entry.prize, entry.going, entry.runners, entry.category, entry.direction,
+		entry.topor)
 
 	race_list.append(race)
 
 for race in race_list:
 	race.print_race()
+
+print(f'\nNumber of races: {len(race_list)}')
