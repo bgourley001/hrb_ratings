@@ -4,7 +4,6 @@ class Race:
 	def __init__(self, class_scores, score_multipliers, race_date, track, time, race_name, race_class, 
 		race_restrictions, major, racetype, distance, prize, going, runners, category, 
 		direction, topor):
-		# class_score mapping
 		self.class_scores = class_scores
 		self.score_multipliers = score_multipliers
 		self.race_date = race_date
@@ -18,10 +17,11 @@ class Race:
 		self.distance = distance
 		self.prize = prize
 		self.going = going
-		self.runners = runners
+		self.runners = runners.astype(int)
 		self.category = category
 		self.direction = direction
 		self.topor = topor
+		self.places = self.get_no_of_places()
 		self.raceClass = self.set_raceClass()
 		self.raceClass_score = self.set_raceClass_score()
 		self.raceValue_score = self.set_raceValue_score()
@@ -29,17 +29,39 @@ class Race:
 		self.race_score = self.set_race_score()
 
 	def print_race(self):
-		msg = (
+		race_msg = (
 			f'race_date: {self.race_date}, track: {self.track}, time: {self.time}, '
 			f'race_name: {self.race_name}, race_class: {self.race_class}, '
 			f'race_restrictions: {self.race_restrictions}, major: {self.major}, '
 			f'racetype: {self.racetype}, distance: {self.distance}, prize: {self.prize}, '
 			f'going: {self.going}, runners: {self.runners}, category: {self.category}, '
-			f'direction: {self.direction}, topor: {self.topor}, raceClass: {self.raceClass}, '
-			f'raceClass_score: {self.raceClass_score}, raceValue_score {self.raceValue_score}, '
-			f'topor_score: {self.topor_score}, race_score: {self.race_score} '
+			f'direction: {self.direction}, topor: {self.topor}, places: {self.places}, '
+			f'raceClass: {self.raceClass}, raceClass_score: {self.raceClass_score}, '
+			f'raceValue_score {self.raceValue_score}, topor_score: {self.topor_score}, '
+			f'race_score: {self.race_score} '
 			)
-		print(msg)
+		print(race_msg)
+
+		for entry in self.horse_entries:
+			horse_msg = (
+				f'horse: {entry.get_horseName()}, form: {entry.get_form()}, '
+				f'prior_form: {entry.get_prior_form()} '
+				)
+			print(horse_msg)
+
+		print()
+
+	def get_no_of_places(self):
+		if self.runners < 5:
+			self.places = 1
+		elif self.runners < 8:
+			self.places = 2
+		elif self.runners < 16:
+			self.places = 3
+		else:
+			self.places = 4
+
+		return self.places
 
 	def set_raceClass(self):
 		if self.race_class == 'Irish':
@@ -90,8 +112,60 @@ class Race:
 
 		return self.topor_score
 
+	# def get_prior_form_score(self): # lr_finish, places, score_multipliers):
+	# 	score = 0
+	# 	if lr_finish <= places:
+	# 		if lr_finish > 1:
+	# 			score = score_multipliers.get('prior_place')
+	# 		elif lr_finish == 1:
+	# 			score = score_multipliers.get('prior_win')
+
+	# 	return score
+
 	def set_race_score(self):
 		self.race_score = sum([self.raceClass_score, self.raceValue_score, self.topor_score])
 
 		return self.race_score
+
+	def set_horse_entries(self, horse_entries):
+		self.horse_entries = horse_entries
+
+	def get_runners(self):
+		return self.runners
+
+	def get_race_date(self):
+		return self.race_date
+
+	def get_track(self):
+		return self.track
+
+	def get_time(self):
+		return self.time
+
+class Horse:
+	""" Horse Class : defines Horse characteristics """
+	def __init__(self, horse, horse_form):
+		self.horseName = horse
+		# self.OfficialRating = OfficialRating
+		# self.LastRun = LastRun
+		self.form = horse_form
+
+	def get_horseName(self):
+		return self.horseName
+
+	def get_form(self):
+		return self.form
+
+	def get_prior_form(self):
+		# prior form
+		position = -1
+		self.prior_form = self.form[position]
+
+		return self.prior_form
+
+	def print_horse(self):
+		msg = (
+			f'horseName: {get_horseName()}, form: {get_form()}, prior_form: {get_prior_form()}  '
+			)
+		print(msg)
 

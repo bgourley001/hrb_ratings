@@ -87,7 +87,7 @@ race_list = []
 for count in range(0, len(df_grouped)):
 	entry = df_grouped.iloc[count]
 
-	# create Race class instance
+	# create Race entry
 	race = hrb_classes.Race(class_scores, score_multipliers, entry.race_date, entry.track, entry.time, 
 		entry.race_name, entry['class'], entry.race_restrictions, entry.major, entry.racetype, 
 		entry.distance, entry.prize, entry.going, entry.runners, entry.category, entry.direction,
@@ -96,6 +96,15 @@ for count in range(0, len(df_grouped)):
 	race_list.append(race)
 
 for race in race_list:
-	race.print_race()
+	# add horse entries
+	entries = df_horse.loc[(df_horse.race_date == race.get_race_date()) & 
+	(df_horse.track == race.get_track()) & (df_horse.time == race.get_time())].horse
+	horse_entries = []
+	for entry in entries:
+		horse_form = df_horse.loc[(df_horse.horse == entry)].form.item()
+		horse_entry = hrb_classes.Horse(entry, horse_form)
+		horse_entries.append(horse_entry)
 
-print(f'\nNumber of races: {len(race_list)}')
+	race.set_horse_entries(horse_entries)
+	race.print_race()
+print(f'Number of races: {len(race_list)}')
