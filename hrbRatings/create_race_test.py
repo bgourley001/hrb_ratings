@@ -39,10 +39,14 @@ class_scores = {
 }
 
 # score multiplier mapping
-score_multipliers = {
+race_score_multipliers = {
 	'raceValue_multiplier' : 1,
-	'topor_multiplier' : 1,
-	'prior_win' : 1,
+	'topor_multiplier' : 1
+}
+
+# horse score multiplier mapping
+horse_score_multipliers = {
+	'prior_win' : 2,
 	'prior_place' : 1
 }
 
@@ -88,7 +92,7 @@ for count in range(0, len(df_grouped)):
 	entry = df_grouped.iloc[count]
 
 	# create Race entry
-	race = hrb_classes.Race(class_scores, score_multipliers, entry.race_date, entry.track, entry.time, 
+	race = hrb_classes.Race(class_scores, race_score_multipliers, entry.race_date, entry.track, entry.time, 
 		entry.race_name, entry['class'], entry.race_restrictions, entry.major, entry.racetype, 
 		entry.distance, entry.prize, entry.going, entry.runners, entry.category, entry.direction,
 		entry.topor)
@@ -102,9 +106,12 @@ for race in race_list:
 	horse_entries = []
 	for entry in entries:
 		horse_form = df_horse.loc[(df_horse.horse == entry)].form.item()
-		horse_entry = hrb_classes.Horse(entry, horse_form)
+		horse_entry = hrb_classes.Horse(entry, horse_form, horse_score_multipliers)
 		horse_entries.append(horse_entry)
 
 	race.set_horse_entries(horse_entries)
+	race.process_horse_entries()
 	race.print_race()
+	print()
+
 print(f'Number of races: {len(race_list)}')
