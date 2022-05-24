@@ -23,6 +23,9 @@ class Race:
 		self.category = category
 		self.direction = direction
 		self.topor = topor
+
+		self.classScores = score_settings.ScoreClass()
+		self.raceMultipliers = score_settings.RaceScoreMultiplier()
 		self.places = self.get_no_of_places()
 		self.raceClass = self.set_raceClass()
 		self.raceClass_score = self.set_raceClass_score()
@@ -71,26 +74,22 @@ class Race:
 		return self.raceClass
 		
 	def set_raceClass_score(self):
-		classScores = score_settings.ScoreClass()
-		self.raceClass_score = classScores.get_class_score(self.raceClass)
-
+		self.raceClass_score = self.classScores.get_class_score(self.raceClass)
 		return self.raceClass_score
 
 	def set_raceValue_score(self):
-		setting = score_settings.RaceScoreMultiplier()
 		round_prize = (self.prize/1000).round(0).astype(int)
 		# adjust rounded_prize to <= max_rounded_prize
 		if round_prize <= 20:
 			rounded_prize = round_prize
 		else:
 			rounded_prize = 20
-		self.raceValue_score = rounded_prize *  setting.get_race_score_multiplier('raceValue')
+		self.raceValue_score = rounded_prize *  self.raceMultipliers.get_race_score_multiplier('raceValue')
 
 		return self.raceValue_score
 
 	def set_topor_score(self):
-		setting = score_settings.RaceScoreMultiplier()
-		self.topor_score = self.topor * setting.get_race_score_multiplier('topor')
+		self.topor_score = self.topor * self.raceMultipliers.get_race_score_multiplier('topor')
 
 		return self.topor_score
 
@@ -154,6 +153,8 @@ class Horse:
 		# self.LastRun = LastRun
 		self.form = horse_form
 
+		self.horseMultipliers = score_settings.HorseScoreMultiplier()
+
 	def get_horseName(self):
 		return self.horseName
 
@@ -168,13 +169,12 @@ class Horse:
 		return self.prior_form
 
 	def set_prior_form_score(self, places):
-		setting = score_settings.HorseScoreMultiplier()
 		self.prior_form_score = 0
 		if self.prior_form <= places:
 			if self.prior_form > 1:
-				self.prior_form_score = setting.get_horse_score_multiplier('prior_place')
+				self.prior_form_score = self.horseMultipliers.get_horse_score_multiplier('prior_place')
 			elif self.prior_form == 1:
-				self.prior_form_score = setting.get_horse_score_multiplier('prior_win')
+				self.prior_form_score = self.horseMultipliers.get_horse_score_multiplier('prior_win')
 
 		return self.prior_form_score
 
