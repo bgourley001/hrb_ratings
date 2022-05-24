@@ -24,32 +24,6 @@ daily_racecards_path = load_path + 'hrbRatings/csv_downloads/cards/'
 
 report_date = '2022-05-07'
 
-# class_score mapping
-class_scores = {
-	'Class 7' : 80,
-	'Class 6' : 85,
-	'Class 5' : 90,
-	'Class 4' : 95,
-	'Class 3' : 100,
-	'Class 2' : 105,
-	'Class 1' : 110,
-	'Group 3' : 115,
-	'Group 2' : 120,
-	'Group 1' : 125	
-}
-
-# score multiplier mapping
-race_score_multipliers = {
-	'raceValue_multiplier' : 1,
-	'topor_multiplier' : 1
-}
-
-# horse score multiplier mapping
-horse_score_multipliers = {
-	'prior_win' : 2,
-	'prior_place' : 1
-}
-
 def get_daily_report(daily_report_path, report_date):
 	daily_report_filename = 'dailyreport-' + report_date + '.csv'
 	df_daily_report = pd.read_csv(daily_report_path + daily_report_filename, encoding="ISO-8859-1")
@@ -92,7 +66,7 @@ for count in range(0, len(df_grouped)):
 	entry = df_grouped.iloc[count]
 
 	# create Race entry
-	race = hrb_classes.Race(class_scores, race_score_multipliers, entry.race_date, entry.track, entry.time, 
+	race = hrb_classes.Race(entry.race_date, entry.track, entry.time, 
 		entry.race_name, entry['class'], entry.race_restrictions, entry.major, entry.racetype, 
 		entry.distance, entry.prize, entry.going, entry.runners, entry.category, entry.direction,
 		entry.topor)
@@ -106,7 +80,7 @@ for race in race_list:
 	horse_entries = []
 	for entry in entries:
 		horse_form = df_horse.loc[(df_horse.horse == entry)].form.item()
-		horse_entry = hrb_classes.Horse(entry, horse_form, horse_score_multipliers)
+		horse_entry = hrb_classes.Horse(entry, horse_form)
 		horse_entries.append(horse_entry)
 
 	race.set_horse_entries(horse_entries)
