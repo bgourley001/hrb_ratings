@@ -67,7 +67,7 @@ class Race:
 			 		self.raceClass = 'Group 1'
 				else:
 			 		# Listed Race
-			 		self.raceClass = 'class 1'
+			 		self.raceClass = 'Class 1'
 		else:
 			self.raceClass = self.race_class
 
