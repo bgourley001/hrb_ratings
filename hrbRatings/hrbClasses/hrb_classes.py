@@ -181,6 +181,14 @@ class Horse:
 	def get_prior_form_score(self):
 		return self.prior_form_score
 
+	def set_L10_entries(self, L10_entries):
+		self.L10_entries = L10_entries
+
+		return self.L10_entries
+
+	def get_L10_entries(self):
+		return self.L10_entries
+
 	def print_horse(self):
 		msg = (
 			f'horseName: {get_horseName()}, form: {get_form()}, prior_form: {get_prior_form()}, '
@@ -188,3 +196,27 @@ class Horse:
 			)
 		print(msg)
 
+class Last10:
+	""" Last 10 Class : contains details of a previous horse run """
+	def __init__(self, horse_name, last10_run, distance, distance_move, race_type,
+				 placing, runners, track, going, last10_class):
+		self.horse_name = horse_name
+		self.last10_run = last10_run
+		self.distance = distance
+		self.distance_move = distance_move
+		self.race_type = race_type
+		self.placing = placing
+		self.runners = runners
+		self.track = track
+		self.going = going
+		self.last10_class = last10_class
+
+	def print_last10(self):
+		l10_msg = (
+			f'horse_name: {self.horse_name}, last10_run: {self.last10_run}, distance: {self.distance}, '
+			f'distance_move: {self.distance_move}, race_type: {self.race_type} '
+			f'placing: {self.placing}, runners: {self.runners}, '
+			f'track: {self.track}, going: {self.going}, '
+			f'last10_class: {self.last10_class}, '
+			)
+		print(l10_msg)

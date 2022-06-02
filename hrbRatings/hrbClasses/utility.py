@@ -33,3 +33,18 @@ def get_daily_report(report_date, machine):
 	df_horse = df_daily_report[display_columns]
 
 	return df_daily_report, df_horse
+
+def get_last10_report(report_date, machine):
+	load_path = get_load_path(machine)
+	os.chdir(load_path)
+
+	# data path
+	last10_report_path = load_path + 'hrbRatings/csv_downloads/last10_reports/'
+	daily_racecards_path = load_path + 'hrbRatings/csv_downloads/cards/'
+
+	last10_report_filename = 'LastTenDistances_report_' + report_date + '.csv'
+	df_last10_report = pd.read_csv(last10_report_path + last10_report_filename, encoding="ISO-8859-1")
+
+	# print(df_last10_report.head())
+
+	return df_last10_report

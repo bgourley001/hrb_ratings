@@ -1,0 +1,27 @@
+time	
+track	
+number_of_runners	
+horse_name	
+todayyards
+
+yards1	move1	rtype1	placing1	runners1	track1	going1	class1	
+
+yards2	move2	rtype2	placing2	runners2	track2	going2	class2
+
+yards3	move3	rtype3	placing3	runners3	track3	going3	class3	
+
+yards4	move4	rtype4	placing4	runners4	track4	going4	class4
+
+yards5	move5	rtype5	placing5	runners5	track5	going5	class5
+
+yards6	move6	rtype6	placing6	runners6	track6	going6	class6	
+
+yards7	move7	rtype7	placing7	runners7	track7	going7	class7
+
+yards8	move8	rtype8	placing8	runners8	track8	going8	class8	
+
+yards9	move9	rtype9	placing9	runners9	track9	going9	class9	
+
+yards10	move10	rtype10	placing10	runners10	track10	going10	class10	
+
+winyards	winmove	winrtype	winrunners	wintrack	wingoing	winclass
