@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+from hrbClasses import hrb_classes
 
 def get_load_path(machine):
 	if machine == 'desktop':
@@ -48,3 +49,11 @@ def get_last10_report(report_date, machine):
 	# print(df_last10_report.head())
 
 	return df_last10_report
+
+def create_last10_instance(entry, count, l10_entry):
+	# l10_instance
+		l10_instance = hrb_classes.Last10(entry, count, l10_entry.prevyards.item(), l10_entry.prevmove.item(), 
+			l10_entry.prevrtype.item(), l10_entry.prevplacing.item(), l10_entry.prevrunners.item(), 
+			l10_entry.prevtrack.item(), l10_entry.prevgoing.item(), l10_entry.prevclass.item())
+		
+		return l10_instance

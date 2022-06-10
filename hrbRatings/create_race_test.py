@@ -41,33 +41,20 @@ for race in race_list:
 	(df_horse.track == race.get_track()) & (df_horse.time == race.get_time())].horse
 	horse_entries = []
 	l10_entries = []
+	count = 0
 	for entry in entries:
 		horse_form = df_horse.loc[(df_horse.horse == entry)].form.item()
 		horse_entry = hrb_classes.Horse(entry, horse_form)
 		horse_entries.append(horse_entry)
 
 		l10_entry = df_last10.loc[(df_last10.horse_name == entry)]
-		# last1
-		last1 = hrb_classes.Last10(entry, 1, l10_entry.prevyards.item(), l10_entry.prevmove.item(), 
-			l10_entry.prevrtype.item(), l10_entry.prevplacing.item(), l10_entry.prevrunners.item(), 
-			l10_entry.prevtrack.item(), l10_entry.prevgoing.item(), l10_entry.prevclass.item())
-		l10_entries.append(last1)
 
-		# last2
-		last2 = hrb_classes.Last10(entry, 2, l10_entry.yards2.item(), l10_entry.move2.item(), 
-			l10_entry.rtype2.item(), l10_entry.placing2.item(), l10_entry.runners2.item(), 
-			l10_entry.track2.item(), l10_entry.going2.item(), l10_entry.class2.item())
-		l10_entries.append(last2)
+		l10_entries.append(utility.create_last10_instance(entry, count, l10_entry))
 
-		# last3
-		last3 = hrb_classes.Last10(entry, 3, l10_entry.yards3.item(), l10_entry.move3.item(), 
-			l10_entry.rtype3.item(), l10_entry.placing3.item(), l10_entry.runners3.item(), 
-			l10_entry.track3.item(), l10_entry.going3.item(), l10_entry.class3.item())
-		l10_entries.append(last3)
+		count += 1
 
 	for i in range(0, len(l10_entries)):
 		print(l10_entries[i].print_last10())
-
 
 	race.set_horse_entries(horse_entries)
 	race.process_horse_entries()

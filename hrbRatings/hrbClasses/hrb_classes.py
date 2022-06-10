@@ -217,6 +217,6 @@ class Last10:
 			f'distance_move: {self.distance_move}, race_type: {self.race_type} '
 			f'placing: {self.placing}, runners: {self.runners}, '
 			f'track: {self.track}, going: {self.going}, '
-			f'last10_class: {self.last10_class}, '
+			f'last10_class: {self.last10_class} '
 			)
 		print(l10_msg)
