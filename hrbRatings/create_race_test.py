@@ -41,7 +41,7 @@ for race in race_list:
 	(df_horse.track == race.get_track()) & (df_horse.time == race.get_time())].horse
 	horse_entries = []
 	l10_entries = []
-	count = 0
+
 	for entry in entries:
 		horse_form = df_horse.loc[(df_horse.horse == entry)].form.item()
 		horse_entry = hrb_classes.Horse(entry, horse_form)
@@ -49,12 +49,7 @@ for race in race_list:
 
 		l10_entry = df_last10.loc[(df_last10.horse_name == entry)]
 
-		l10_entries.append(utility.create_last10_instance(entry, count, l10_entry))
-
-		count += 1
-
-	for i in range(0, len(l10_entries)):
-		print(l10_entries[i].print_last10())
+		l10_entries.append(utility.create_last10_instance(entry, l10_entry))
 
 	race.set_horse_entries(horse_entries)
 	race.process_horse_entries()
