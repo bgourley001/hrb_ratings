@@ -11,16 +11,17 @@ file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTen
 					'OR_report_', 'trainersreport-']
 file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports']
 
-#count = 0
-#for file_category in file_categories:
-#	folder = file_category + '\\'
-#	file_name = file_names[count]
-#	filename =  downloads_path + file_name + str(current_date) + '*'
-#	cmd = 'move ' + filename + ' ' + dest_path + folder
-#	print('cmd = ' + cmd)
-#	os.system(cmd)
-#	count += 1
+count = 0
+for file_category in file_categories:
+	folder = file_category + '\\'
+	file_name = file_names[count]
+	filename =  downloads_path + file_name + str(current_date) + '*'
+	cmd = 'move ' + filename + ' ' + dest_path + folder
+	print('cmd = ' + cmd)
+	os.system(cmd)
+	count += 1
 
+# update github
 cmd = 'git add .'
 os.system(cmd)
 cmd = 'git commit -m "Added csv files for "' + str(current_date)
