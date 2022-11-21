@@ -1,6 +1,7 @@
 import os
 import datetime
 
+# set up paths
 downloads_path = 'C:\\Users\\bgour\\Downloads\\'
 dest_path = 'G:\\Dev2022\\projects\\hrb_ratings\\hrbRatings\\csv_downloads\\'
 
