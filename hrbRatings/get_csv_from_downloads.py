@@ -5,8 +5,8 @@ import datetime
 downloads_path = 'C:\\Users\\bgour\\Downloads\\'
 dest_path = 'G:\\Dev2022\\projects\\hrb_ratings\\hrbRatings\\csv_downloads\\'
 
-current_date = datetime.date.today()
-current_date = '26-12-2022'
+current_date = datetime.date.today() + datetime.timedelta(days=2)
+
 # copy files from Downloads to csv_downloads sub-folders
 file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTenDistances_report_', 
 					'OR_report_', 'trainersreport-']
