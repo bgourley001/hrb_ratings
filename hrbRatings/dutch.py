@@ -8,9 +8,9 @@ def dutching_calculator(odds1, odds2, odds3, stake=5.0):
 #odds1 = (10/3)+1
 #odds2 = (6/1)+1
 #odds3 = (4/1)+1
-odds1 = 4.5
-odds2 = 11
-odds3 = 5.5
+odds1 = 4.33
+odds2 = 7.5
+odds3 = 7
 stake = 5.0
 
 stake1, stake2, stake3 = dutching_calculator(odds1, odds2, odds3, stake)
