@@ -17,7 +17,11 @@ count = 0
 for file_category in file_categories:
 	folder = file_category + '\\'
 	file_name = file_names[count]
-	filename =  downloads_path + file_name + str(current_date) + '*'
+	if file_name == 'GoingReportToday':
+		filename =  downloads_path + file_name + '*'
+	else:
+		filename =  downloads_path + file_name + str(current_date) + '*'
+		
 	cmd = 'move ' + filename + ' ' + dest_path + folder
 	print('cmd = ' + cmd)
 	os.system(cmd)
