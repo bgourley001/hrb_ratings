@@ -11,17 +11,15 @@ current_date = datetime.date.today()
 # copy files from Downloads to csv_downloads sub-folders
 file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTenDistances_report_', 
 					'OR_report_', 'trainersreport-', 'GoingReportToday']
-file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports','daily_going']
+file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports']
 
 count = 0
 for file_category in file_categories:
 	folder = file_category + '\\'
 	file_name = file_names[count]
-	if file_name == 'GoingReportToday':
-		filename =  downloads_path + file_name + '*'
-	else:
-		filename =  downloads_path + file_name + str(current_date) + '*'
-		
+
+	filename =  downloads_path + file_name + str(current_date) + '*'
+
 	cmd = 'move ' + filename + ' ' + dest_path + folder
 	print('cmd = ' + cmd)
 	os.system(cmd)
