@@ -10,8 +10,8 @@ current_date = datetime.date.today()
 
 # copy files from Downloads to csv_downloads sub-folders
 file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTenDistances_report_', 
-					'OR_report_', 'trainersreport-', 'GoingReportToday']
-file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports']
+					'OR_report_', 'trainersreport-', 'GoingReport', 'Weight_report']
+file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports','going_reports','weight_reports']
 
 count = 0
 for file_category in file_categories:
