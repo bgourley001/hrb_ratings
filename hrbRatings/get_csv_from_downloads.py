@@ -1,6 +1,7 @@
 import os
 import glob
 import datetime
+import shutil
 
 def get_download_date():
 	current_date = datetime.date.today()
@@ -11,7 +12,7 @@ def get_download_date():
 def set_file_paths():
 	if os.name == 'nt':  # Windows
 		downloads_path = os.path.join('C:/', 'Users/bgour/Downloads/')
-		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/temp2/')
+		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/temp/')
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
 		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/temp/')
@@ -35,7 +36,8 @@ def copy_to_dest():
 		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
 			basename = os.path.basename(name)
 			print(f'name : {name}, {basename}')
-			os.rename(f'{name}', f'{dest_path}{folder}{basename}')
+			shutil.move(f'{name}', f'{dest_path}{folder}{basename}')
+			#os.rename(f'{name}', f'{dest_path}{folder}{basename}')
 		count += 1
 
 def main():
