@@ -45,16 +45,6 @@ def main():
 
 	copy_to_dest()   
 
-
-
-# update github
-#cmd = 'git add .'
-#os.system(cmd)
-#cmd = 'git commit -m "Added csv files for "' + str(current_date)
-#os.system(cmd)
-#cmd = 'git push origin main'
-#os.system(cmd)
-
 if __name__ == "__main__":
       main()
       
