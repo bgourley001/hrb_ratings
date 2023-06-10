@@ -33,6 +33,7 @@ def copy_to_dest():
 		file_name = file_names[count]
 		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
 			if any(files_to_rename):
+				shutil.move(f'{name}', f'{downloads_path}{file_name}_{get_download_date()}.xlsx')
 				name = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
 			basename = os.path.basename(name)
 			print(f'name : {name}, {basename}')
