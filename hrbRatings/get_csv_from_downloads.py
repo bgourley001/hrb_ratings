@@ -12,10 +12,10 @@ def get_download_date():
 def set_file_paths():
 	if os.name == 'nt':  # Windows
 		downloads_path = os.path.join('C:/', 'Users/bgour/Downloads/')
-		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/temp/')
+		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/')
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
-		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/temp/')
+		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/')
 	
 	#print(f'downloads_path : {downloads_path}')
     
