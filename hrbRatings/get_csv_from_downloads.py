@@ -4,10 +4,9 @@ import datetime
 import shutil
 
 def get_download_date():
-	current_date = datetime.date.today()
-	# current_date = datetime.date.today() + datetime.timedelta(days=2)
+	download_date = datetime.date.today()
 
-	return current_date
+	return download_date
 
 def set_file_paths():
 	if os.name == 'nt':  # Windows
@@ -16,8 +15,6 @@ def set_file_paths():
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
 		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/')
-	
-	#print(f'downloads_path : {downloads_path}')
     
 	return downloads_path, dest_path
 
@@ -25,19 +22,21 @@ def copy_to_dest():
 	# copy files from Downloads to csv_downloads sub-folders
 	downloads_path, dest_path = set_file_paths()
 	file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTenDistances_report_', 
-			'OR_report_', 'trainersreport-', 'GoingReport_', 'Weight_report_', 'GradeReport_', 'CourseDist_']
+			'OR_report_', 'trainersreport-', 'GoingReport', 'Weight_report_', 'GradeReport', 'CourseDist']
 	file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports',
 		   'going_reports','weight_reports','grade_reports','course_dist']
 
 	count = 0
+	files_to_rename = ['CourseDistToday.xlsx', 'GoingReportToday.xlsx', 'GradeReportToday.xlsx']
 	for file_category in file_categories:
 		folder = f'{file_category}/'
 		file_name = file_names[count]
 		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
+			if any(files_to_rename):
+				name = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
 			basename = os.path.basename(name)
 			print(f'name : {name}, {basename}')
 			shutil.move(f'{name}', f'{dest_path}{folder}{basename}')
-			#os.rename(f'{name}', f'{dest_path}{folder}{basename}')
 		count += 1
 
 def main():
