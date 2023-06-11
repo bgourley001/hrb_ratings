@@ -14,7 +14,7 @@ def set_file_paths():
 		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/')
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
-		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/')
+		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/temp/')
     
 	return downloads_path, dest_path
 
