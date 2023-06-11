@@ -14,7 +14,7 @@ def set_file_paths():
 		dest_path = os.path.join('G:/', 'Dev2022/projects/hrb_ratings/hrbRatings/csv_downloads/')
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
-		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/temp/')
+		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/')
     
 	return downloads_path, dest_path
 
@@ -32,7 +32,8 @@ def copy_to_dest():
 		folder = f'{file_category}/'
 		file_name = file_names[count]
 		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
-			if any(files_to_rename):
+			filename = os.path.basename(name)
+			if filename in files_to_rename:
 				shutil.move(f'{name}', f'{downloads_path}{file_name}_{get_download_date()}.xlsx')
 				name = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
 			basename = os.path.basename(name)
