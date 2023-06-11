@@ -21,8 +21,8 @@ def set_file_paths():
 def copy_to_dest():
 	# copy files from Downloads to csv_downloads sub-folders
 	downloads_path, dest_path = set_file_paths()
-	file_names = ['cards_','dailyreport-', 'formreport_', 'jockeysreport-', 'LastTenDistances_report_', 
-			'OR_report_', 'trainersreport-', 'GoingReport', 'Weight_report_', 'GradeReport', 'CourseDist']
+	file_names = ['cards','dailyreport', 'formreport', 'jockeysreport', 'LastTenDistances_report', 
+			'OR_report', 'trainersreport', 'GoingReport', 'Weight_report_', 'GradeReport', 'CourseDist']
 	file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports',
 		   'going_reports','weight_reports','grade_reports','course_dist']
 
