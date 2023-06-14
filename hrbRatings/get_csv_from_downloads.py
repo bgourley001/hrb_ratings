@@ -15,16 +15,18 @@ def set_file_paths():
 	else:  # Linux or macOS
 		downloads_path = os.path.join('/home', 'bill/Downloads/')
 		dest_path = os.path.join('/home','bill/development/python_code/hrb_ratings/hrbRatings/csv_downloads/')
-    
+
 	return downloads_path, dest_path
 
 def copy_to_dest():
 	# copy files from Downloads to csv_downloads sub-folders
 	downloads_path, dest_path = set_file_paths()
 	file_names = ['cards','dailyreport', 'formreport', 'jockeysreport', 'LastTenDistances_report', 
-			'OR_report', 'trainersreport', 'GoingReport', 'Weight_report_', 'GradeReport', 'CourseDist']
-	file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports','or_reports','trainer_reports',
-		   'going_reports','weight_reports','grade_reports','course_dist']
+			'OR_report', 'trainersreport', 'GoingReport', 'Weight_report_', 'GradeReport', 
+			'CourseDist', 'results']
+	file_categories = ['cards','daily_reports','form_reports','jockey_reports','last10_reports',
+		    'or_reports','trainer_reports','going_reports','weight_reports','grade_reports',
+			'course_dist','results']
 
 	count = 0
 	files_to_rename = ['CourseDistToday.xlsx', 'GoingReportToday.xlsx', 'GradeReportToday.xlsx']
