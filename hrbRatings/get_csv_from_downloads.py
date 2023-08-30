@@ -1,6 +1,6 @@
 import os
 import glob
-import datetime
+from datetime import datetime
 import shutil
 
 def get_download_date():
@@ -18,6 +18,30 @@ def set_file_paths():
 
 	return downloads_path, dest_path
 
+def convert_date_format(filename):
+    if 'results_' in filename:
+        date_str = filename.split('_')[1].split('.')[0]
+        parsed_date = datetime.strptime(date_str, '%Y-%m-%d')
+        formatted_date = parsed_date.strftime('%Y-%m-%d')
+        new_filename = filename.replace(date_str, formatted_date)
+        return new_filename
+    
+    return filename
+
+def handle_filenames(downloads_path, dest_path, file_category, file_name, files_to_rename):
+    folder = f'{file_category}/'
+    for name in glob.glob(f'{downloads_path}{file_name}*.*'):
+        filename = os.path.basename(name)
+
+        if filename in files_to_rename:
+            new_filename = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
+            shutil.move(name, new_filename)
+            filename = new_filename
+
+        new_filename = convert_date_format(filename)
+        shutil.move(name, f'{dest_path}{folder}{new_filename}')
+        print(f'{name} moved from downloads to {dest_path}{folder}{new_filename}')
+  
 def copy_to_dest():
 	# copy files from Downloads to csv_downloads sub-folders
 	downloads_path, dest_path = set_file_paths()
@@ -31,16 +55,8 @@ def copy_to_dest():
 	count = 0
 	files_to_rename = ['CourseDistToday.xlsx', 'GoingReportToday.xlsx', 'GradeReportToday.xlsx']
 	for file_category in file_categories:
-		folder = f'{file_category}/'
 		file_name = file_names[count]
-		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
-			filename = os.path.basename(name)
-			if filename in files_to_rename:
-				shutil.move(f'{name}', f'{downloads_path}{file_name}_{get_download_date()}.xlsx')
-				name = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
-			basename = os.path.basename(name)
-			print(f'name : {name}, {basename}')
-			shutil.move(f'{name}', f'{dest_path}{folder}{basename}')
+		handle_filenames(downloads_path, dest_path, file_category, file_name, files_to_rename)
 		count += 1
 
 def main():
