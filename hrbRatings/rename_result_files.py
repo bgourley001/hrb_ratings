@@ -11,7 +11,7 @@ def parse_result_files(source_folder, dest_folder):
     for filename in os.listdir(source_folder):
         if filename.startswith('results_') and filename.endswith('.csv'):
             parts = filename.split('_')
-            if len(parts) == 3:
+            if len(parts) == 2:
                 old_date_str = parts[1].split('.')[0]
                 new_date_str = convert_date_format(old_date_str)
                 new_filename = f'results_{new_date_str}.csv'
