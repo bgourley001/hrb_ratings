@@ -1,6 +1,6 @@
 import os
 import glob
-from datetime import datetime
+import datetime
 import shutil
 
 def get_download_date():
