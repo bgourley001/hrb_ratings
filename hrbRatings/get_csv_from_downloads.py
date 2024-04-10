@@ -29,13 +29,13 @@ def copy_to_dest():
 			'course_dist','results']
 
 	count = 0
-	files_to_rename = ['CourseDistToday.xlsx', 'GoingReportToday.xlsx', 'GradeReportToday.xlsx']
+	files_to_add_date = ['CourseDistToday.xlsx', 'GoingReportToday.xlsx', 'GradeReportToday.xlsx']
 	for file_category in file_categories:
 		folder = f'{file_category}/'
 		file_name = file_names[count]
 		for name in glob.glob(f'{downloads_path}{file_name}*.*'):
 			filename = os.path.basename(name)
-			if filename in files_to_rename:
+			if filename in files_to_add_date:
 				shutil.move(f'{name}', f'{downloads_path}{file_name}_{get_download_date()}.xlsx')
 				name = f'{downloads_path}{file_name}_{get_download_date()}.xlsx'
 			basename = os.path.basename(name)
