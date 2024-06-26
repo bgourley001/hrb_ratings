@@ -1,0 +1,232 @@
+,Column Name,Data
+time,time,13:15:00
+track,track,Lingfield
+horse,horse,Amsby
+race_name_x,race_name_x,Download The At The Races App Apprentice Handicap
+class,class,Class 6
+race_restrictions,race_restrictions,4yo+
+major_x,major_x,Non-Major
+racetype,racetype,Handicap
+distance,distance,1m4f 
+prize,prize,2970
+going,going,Standard
+runners,runners,10
+category,category,All Weather
+topor,topor,58
+direction,direction,Left Handed
+stall_x,stall_x,8
+trainer_x,trainer_x,"Eustace, Harry"
+horse_age_x,horse_age_x,5
+pounds_x,pounds_x,135
+jockey_name_x,jockey_name_x,"Jamin, Pierre-Louis"
+jockeys_claim_x,jockeys_claim_x,0
+fav_x,fav_x,Non Fav
+OfficialRating,OfficialRating,58
+Odds,Odds,3.5
+racecardno,racecardno,1
+last1,last1,39.895
+last2,last2,17.876610000000003
+last3,last3,10.40595
+speedandtodayrating,speedandtodayrating,0.6555000000000001
+jockeytrainerstallionrating,jockeytrainerstallionrating,0.8399
+total,total,91.22275789166667
+LastRun,LastRun,21
+jockey14runs,jockey14runs,5
+jockey14wins,jockey14wins,0
+jockey14strike,jockey14strike,0
+jockey30runs,jockey30runs,9
+jockey30wins,jockey30wins,0
+jockey30strike,jockey30strike,0
+jockey1yrruns,jockey1yrruns,185
+jockey1yrwins,jockey1yrwins,23
+jockey1yrstrike,jockey1yrstrike,12
+jockeyruns,jockeyruns,297
+jockeywins,jockeywins,34
+jockeystrike,jockeystrike,11
+jocktrainruns,jocktrainruns,5
+jocktrainwins,jocktrainwins,0
+jocktrainstrike,jocktrainstrike,0
+jockcsrruns,jockcsrruns,31
+jockcsrwins,jockcsrwins,3
+jockcsrstrike,jockcsrstrike,10
+trainer14runs,trainer14runs,9
+trainer14wins,trainer14wins,2
+trainer14strike,trainer14strike,22
+trainer30runs,trainer30runs,10
+trainer30wins,trainer30wins,2
+trainer30strike,trainer30strike,20
+trainer1yrruns,trainer1yrruns,141
+trainer1yrwins,trainer1yrwins,15
+trainer1yrstrike,trainer1yrstrike,11
+trainerruns,trainerruns,150
+trainerwins,trainerwins,17
+trainerstrike,trainerstrike,11
+traincsrruns,traincsrruns,20
+traincsrwins,traincsrwins,2
+traincsrstrike,traincsrstrike,10
+form,form,6465778
+horsecountry,horsecountry,(GB)
+stallsanalyser,stallsanalyser,0
+HorseSex,HorseSex,Male
+stallion_x,stallion_x,Sir Percy
+LastRace_Pos,LastRace_Pos,Eighth
+SecondLastRace_Pos,SecondLastRace_Pos,Seventh
+LR_OR,LR_OR,62.0
+2LR_OR,2LR_OR,64.0
+3LR_OR,3LR_OR,66.0
+4LR_OR,4LR_OR,68.0
+Going_WinPC,Going_WinPC,0
+Career_WinPC,Career_WinPC,0
+Class_WinPC,Class_WinPC,0
+Direction_WinPC,Direction_WinPC,0
+LR_Track,LR_Track,Wolverhampton
+LR_class,LR_class,Class 6
+LR_prize,LR_prize,2970.0
+LR_distance,LR_distance,1m4f 
+LR_runners,LR_runners,11.0
+LR_Odds,LR_Odds,33.0
+LR_weight,LR_weight,135.0
+Days_Since_2LR,Days_Since_2LR,46
+2LR_Track,2LR_Track,Wolverhampton
+2LR_class,2LR_class,Class 5
+2LR_prize,2LR_prize,3510.0
+2LR_distance,2LR_distance,1m1½f 
+2LR_runners,2LR_runners,7.0
+2LR_Odds,2LR_Odds,6.0
+2LR_weight,2LR_weight,122.0
+Days_Since_3LR,Days_Since_3LR,300
+3LR_Track,3LR_Track,Kempton
+3LR_class,3LR_class,Class 5
+3LR_prize,3LR_prize,3240.0
+3LR_distance,3LR_distance,1m3f 
+3LR_runners,3LR_runners,11.0
+3LR_Odds,3LR_Odds,9.0
+ThirdLastRace_Pos,ThirdLastRace_Pos,Seventh
+CareerRuns,CareerRuns,9
+CareerWins,CareerWins,0
+LR_Major,LR_Major,
+2LR_Major,2LR_Major,
+3LR_Major,3LR_Major,
+LR_Going,LR_Going,Standard
+2LR_Going,2LR_Going,Standard
+3LR_Going,3LR_Going,Standard To Slow
+dam,dam,Astrodiva
+Headgear_x,Headgear_x,None
+headgearlr,headgearlr,Hood
+Class_plcPC,Class_plcPC,0
+TrkDist_plcPC,TrkDist_plcPC,0
+Going_plcPC,Going_plcPC,25
+HeadgearRuns,HeadgearRuns,8
+HeadgearWins,HeadgearWins,0
+Headgear_WinPC,Headgear_WinPC,0
+MilesTravelled,MilesTravelled,95
+PosMilesTravelled,PosMilesTravelled,Joint Second
+LRDistAhead,LRDistAhead,0.75
+LRDistBt,LRDistBt,13.65
+GoingRuns,GoingRuns,4
+GoingWins,GoingWins,0
+GoingPlaces,GoingPlaces,1
+LRSubWinpc,LRSubWinpc,40
+LRSubPlcpc,LRSubPlcpc,60
+stallpos,stallpos,Inside
+surface,surface,Polytrack
+DetailedSex,DetailedSex,Gelding
+TrainerHorseRuns,TrainerHorseRuns,5
+Hcap_NonRuns,Hcap_NonRuns,6
+Hcap_NonWins,Hcap_NonWins,0
+NH_Hcap_NonRuns,NH_Hcap_NonRuns,6
+NH_Hcap_NonWins,NH_Hcap_NonWins,0
+medianOR,medianOR,50.5
+avgOR,avgOR,50
+SurfaceRuns,SurfaceRuns,5
+SurfaceWins,SurfaceWins,0
+code,code,All Weather
+Stallion1yrPC,Stallion1yrPC,12
+StallionAgePC,StallionAgePC,14
+StallionDistancePC,StallionDistancePC,10
+StallionTrackPC,StallionTrackPC,0
+StallionClassPC,StallionClassPC,16
+StallionSurfacePC,StallionSurfacePC,11
+StallionGoingPC,StallionGoingPC,11
+FCOdds,FCOdds,7.0
+EarlyOdds,EarlyOdds,6.0
+dams_stallion,dams_stallion,Where Or When (IRE)
+LWIN_Track,LWIN_Track,
+LWIN_distance,LWIN_distance,
+LWIN_odds,LWIN_odds,
+LWIN_going,LWIN_going,
+LWIN_OR,LWIN_OR,
+ClassandHigherWins,ClassandHigherWins,0
+JockeyHorseRuns,JockeyHorseRuns,0
+JockeyHorseWins,JockeyHorseWins,0
+SeasonRuns,SeasonRuns,1
+TrainerHorseWins,TrainerHorseWins,0
+TrainerHorseCodeWins,TrainerHorseCodeWins,3
+penalty,penalty,0
+HorseCareerPlaces,HorseCareerPlaces,1
+HorseTrackRuns,HorseTrackRuns,3
+HorseTrackWins,HorseTrackWins,0
+HorseTrackPlaces,HorseTrackPlaces,1
+HorseTrackWin%,HorseTrackWin%,0
+HorseTrackPlace%,HorseTrackPlace%,33
+HorseDistanceRuns,HorseDistanceRuns,1
+HorseDistanceWins,HorseDistanceWins,0
+HorseDistancePlaces,HorseDistancePlaces,0
+HorseDistanceWin%,HorseDistanceWin%,0
+HorseDistancePlace%,HorseDistancePlace%,0
+HorseCDRuns,HorseCDRuns,0
+HorseCDWins,HorseCDWins,0
+HorseCDPlaces,HorseCDPlaces,0
+HorseCDWin%,HorseCDWin%,0
+HorseclassRuns,HorseclassRuns,1
+HorseclassWins,HorseclassWins,0
+HorseclassPlaces,HorseclassPlaces,0
+race_date,race_date,2022-05-03
+Unnamed: 183,Unnamed: 183,
+racedate,racedate,2022-05-03
+racetime,racetime,13:15:00
+race_name_y,race_name_y,Download The At The Races App Apprentice Handicap
+race_restrictions_age,race_restrictions_age,4yo+
+race_class,race_class,Class 6
+major_y,major_y,
+race_distance,race_distance,1m4f 
+prize_money,prize_money,2970
+going_description,going_description,Standard
+number_of_runners,number_of_runners,10
+place,place,6th
+distbt,distbt,1
+horse_name,horse_name,Amsby
+stall_y,stall_y,8
+trainer_y,trainer_y,"Eustace, Harry"
+horse_age_y,horse_age_y,5
+jockey_name_y,jockey_name_y,"Jamin, Pierre-Louis"
+jockeys_claim_y,jockeys_claim_y,0
+pounds_y,pounds_y,135
+odds,odds,3.0
+fav_y,fav_y,(Fav)
+official_rating,official_rating,58
+comptime,comptime,2 mins 29.46s
+comptime_numeric,comptime_numeric,149.46
+TotalDstBt,TotalDstBt,9.25
+MedianOR,MedianOR,50.5
+Dist_Furlongs,Dist_Furlongs,12.0
+placing_numerical,placing_numerical,6
+RCode,RCode,All Weather
+BFSP,BFSP,4.4
+BFSP_Place,BFSP_Place,1.79
+PlcsPaid,PlcsPaid,3
+BFPlcsPaid,BFPlcsPaid,3
+Yards,Yards,2640
+RailMove,RailMove,0
+RaceType,RaceType,Handicap
+Comment,Comment,"chased leader, led narrowly 3f out, pushed along and headed over 2f out, ridden over 1f out, soon lost 2nd, weakened final furlong"
+CardNo,CardNo,1
+StallPositioning,StallPositioning,Inside
+TrackDirection,TrackDirection,Left Handed
+Headgear_y,Headgear_y,
+dayssincelr,dayssincelr,21
+careerruns,careerruns,9
+stallion_y,stallion_y,Sir Percy
+surfacetype,surfacetype,Polytrack
+horse_prizewin,horse_prizewin,300.0
+Unnamed: 47,Unnamed: 47,
